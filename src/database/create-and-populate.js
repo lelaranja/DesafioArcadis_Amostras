@@ -14,7 +14,7 @@ CREATE TABLE IF NOT EXISTS "PONTOS" (
   );`;
 
 const ADD_PONTOS_DATA = `
-INSERT INTO USUARIOS (NomePonto, NomeParâmetro, CoordX, CoordY, ValorAmostrado, DataColeta)
+INSERT INTO USUARIOS (NomePonto, NomeParametro, CoordX, CoordY, ValorAmostrado, DataColeta)
 VALUES 
     ('PV-01', 'DBO', 333287.02, 7394586.09, 6, 22/07/2022),
     ('PA-05', 'Alumínio Dissolvido', 342593.07, 7380989.23, 0.1, 02/05/2022),
