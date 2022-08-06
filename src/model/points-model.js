@@ -1,8 +1,8 @@
 import pontosDAO from "../DAO/points-dao.js"
-import {
-    criaUsuario,
-    validaUsuario,
-} from "../services/usuario.js"
+// import {
+//     criaUsuario,
+//     validaUsuario,
+// } from "../services/usuario.js"
 
 const pontoModel = {
 
@@ -29,7 +29,7 @@ const pontoModel = {
                 }
             } else {
                 return {
-                    "mensagem": `Ponto ${email} não encontrado`,
+                    "mensagem": `Ponto ${NomePonto} não encontrado`,
                     "status": 404
                 }
             }
@@ -43,9 +43,9 @@ const pontoModel = {
 
     },
 
-    inserePonto: async (ponto) => {
+    inserePonto: async (novoPonto) => {
         try {
-            const novoPonto = criaPonto(ponto)
+            // const novoPonto = criaPonto(ponto)
             const mensagem = await pontosDAO.inserePonto(novoPonto)
             return {
                 "mensagem": mensagem,
@@ -77,7 +77,7 @@ const pontoModel = {
 
     atualizaPonto: async (NomePonto, novosDados) => {
         try {
-            const mensagem = await usuarioDAO.atualizaPonto(NomePonto, novosDados)
+            const mensagem = await pontosDAO.atualizaPonto(NomePonto, novosDados)
             return {
                 "mensagem": mensagem,
                 "status": 200

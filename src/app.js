@@ -1,4 +1,4 @@
-import PointsController from "./controller/points-controller.js";
+import pontoController from "./controller/points-controller.js";
 
 import express from "express";
 
@@ -6,5 +6,5 @@ const app = express();
 
 app.use(express.json());
 
-PointsController.routes(app);
+pontoController(app);
 export default app;
