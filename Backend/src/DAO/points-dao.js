@@ -30,8 +30,8 @@ const pontosDAO = {
 
     inserePonto: (ponto) => {
         return new Promise((resolve, reject) => {
-            db.run(`INSERT INTO PONTOS (NomePonto, NomeParametro, CoordX, CoordY, ValorAmostrado, DataColeta)
-            VALUES (?, ?, ?, ?, ?, ?)`, ponto.NomePonto, ponto.NomeParametro, ponto.CoordX, ponto.CoordY, ponto.ValorAmostrada, ponto.DataColeta,
+            db.run(`INSERT INTO PONTOS (NomePonto, NomeParametro, CoordX, CoordY, ValorAmostrado, UnidadeMedida, DataColeta)
+            VALUES (?, ?, ?, ?, ?, ?)`, ponto.NomePonto, ponto.NomeParametro, ponto.CoordX, ponto.CoordY, ponto.ValorAmostrado, ponto.UnidadeMedida, ponto.DataColeta,
                 (erro) => {
                     if (erro) {
                         reject(erro)
@@ -56,10 +56,10 @@ const pontosDAO = {
     },
 
     atualizaPonto: (NomePonto, novoPonto) => {
-        const ATUALIZA_PONTO = `UPDATE PONTOS SET NomePonto = ?, NomeParametro = ?, CoordX = ?, CoordY = ?, ValorAmostrado = ?, DataColeta = ?  WHERE NomePonto = ?`
+        const ATUALIZA_PONTO = `UPDATE PONTOS SET NomePonto = ?, NomeParametro = ?, CoordX = ?, CoordY = ?, ValorAmostrado = ?, UnidadeMedida = ?, DataColeta = ?  WHERE NomePonto = ?`
 
         return new Promise((resolve, reject) => {
-            db.run(ATUALIZA_PONTO, novoPonto.NomePonto, novoPonto.NomeParametro, novoPonto.CoordX, novoPonto.CoordY, novoPonto.ValorAmostrado, novoPonto.DataColeta,
+            db.run(ATUALIZA_PONTO, novoPonto.NomePonto, novoPonto.NomeParametro, novoPonto.CoordX, novoPonto.CoordY, novoPonto.ValorAmostrado, ponto.UnidadeMedida, novoPonto.DataColeta,
                 (error) => {
                     if (error) {
                         reject(error)
