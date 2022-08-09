@@ -1,17 +1,37 @@
+import Modal from 'react-modal';
+import { useState } from 'react';
 import React from "react";
 import ButtonAbove from "../buttonAbove";
 import ButtonAdd from "../buttonAdd";
 import MainButton from "../buttonAll";
 import "./pointList.css"
+import FormAdd from '../form';
+
+Modal.setAppElement('#root')
 
 const List = () => {
+
+    const [modalIsOpen, setIsOpen] = useState(false)
+
+    const handleOpenModal = () => {
+        return setIsOpen(true)
+    }
+
+    const handleCloseModal = () => {
+        return setIsOpen(false)
+    }
+
+
     return (
         <div>
             <header>
                 <h2>Pontos cadastrados</h2>
                 <MainButton>Listar todos os pontos</MainButton>
                 <ButtonAbove>Pontos que violam a legislação</ButtonAbove>
-                <ButtonAdd>Adicionar pontos</ButtonAdd>
+                <ButtonAdd onClick={handleOpenModal} >Adicionar pontos</ButtonAdd>
+                <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
+                    <FormAdd />
+                </Modal>
             </header>
             <section className="lista">
                 <div className='textList'>
