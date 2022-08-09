@@ -1,0 +1,19 @@
+.botao {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+  background: #e5610c;
+  border-radius: 15px;
+  width: 139px;
+  height: 52px;
+  left: 612px;
+  top: 39px;
+  border: none;
+  color: #ffffff;
+}
+
+.botao:hover {
+  color: #54433b;
+  cursor: pointer;
+}
