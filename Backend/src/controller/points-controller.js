@@ -12,7 +12,25 @@ const pontoController = (app) => {
             })
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
+                "mensagem": error.mensagem,
+                "erro": true
+            })
+        }
+
+    })
+
+    app.get('/ponto/irregular', async (req, res) => {
+        try {
+            const resposta = await pontoModel.pegaPontosIrregulares()
+
+            res.status(resposta.status).json({
+                "pontos": resposta.dados,
+                "erro": false
+            })
+
+        } catch (error) {
+            res.status(400).json({
                 "mensagem": error.mensagem,
                 "erro": true
             })
@@ -38,12 +56,13 @@ const pontoController = (app) => {
             }
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
                 "mensagem": error.message,
                 "erro": true
             })
         }
     })
+
 
     app.post('/ponto', async (req, res) => {
         const body = req.body
@@ -64,7 +83,7 @@ const pontoController = (app) => {
             }
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
                 "mensagem": error.message,
                 "erro": true
             })
@@ -118,7 +137,7 @@ const pontoController = (app) => {
             }
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
                 "mensagem": error.message,
                 "erro": true
             })

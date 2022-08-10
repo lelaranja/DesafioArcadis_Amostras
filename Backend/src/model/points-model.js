@@ -1,4 +1,5 @@
 import pontosDAO from "../DAO/points-dao.js"
+import { validaParams } from "../services/filtroValida.js"
 // import {
 //     criaUsuario,
 //     validaUsuario,
@@ -11,6 +12,21 @@ const pontoModel = {
             const dados = await pontosDAO.pegaTodosPontos()
             return {
                 "dados": dados,
+                "status": 200
+            }
+
+        } catch (error) {
+            throw error
+        }
+    },
+
+    pegaPontosIrregulares: async () => {
+        try {
+            const dados = await pontosDAO.pegaTodosPontos()
+            const dadosFiltro = await dados.filter((ponto) => { if (validaParams(ponto) == false) { return ponto } })
+            console.log(dados, dadosFiltro);
+            return {
+                "dados": dadosFiltro,
                 "status": 200
             }
 

@@ -1,6 +1,6 @@
 import sqlite3 from 'sqlite3'
 sqlite3.verbose()
-const db = new sqlite3.Database('database.db');
+const db = new sqlite3.Database('./src/database/database.db');
 
 const PONTOS_SCHEMA = `
 CREATE TABLE IF NOT EXISTS "PONTOS" (
