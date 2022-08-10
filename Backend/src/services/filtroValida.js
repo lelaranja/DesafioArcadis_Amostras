@@ -1,5 +1,5 @@
 const arsenioChumbo = (parametro, valor, unidade) => {
-    if ((parametro == "Arsênio total" || parametro == "Chumbo total") && (valor <= 0.01) && (unidade == "mg/l")) {
+    if ((parametro.toLowerCase() == "Arsênio total" || parametro.toLowerCase() == "Chumbo total") && (valor <= 0.01) && (unidade == "mg/l")) {
         return true
     } else {
         return false
@@ -15,7 +15,7 @@ const aluminioDissolvido = (parametro, valor, unidade) => {
 }
 
 const cobreDissolvido = (parametro, valor, unidade) => {
-    if ((parametro == "Cobre dissolvido") && (valor <= 0.009) && (unidade == "mg/l")) {
+    if ((parametro.toLowerCase() == "Cobre dissolvido") && (valor <= 0.009) && (unidade == "mg/l")) {
         return true
     } else {
         return false
@@ -23,7 +23,7 @@ const cobreDissolvido = (parametro, valor, unidade) => {
 }
 
 const escherichiaColi = (parametro, valor, unidade) => {
-    if ((parametro == "Escherichia coli") && (valor <= 1000) && (unidade == "NPM/100ml")) {
+    if ((parametro.toLowerCase() == "Escherichia coli") && (valor <= 1000) && (unidade == "NPM/100ml")) {
         return true
     } else {
         return false
@@ -31,7 +31,7 @@ const escherichiaColi = (parametro, valor, unidade) => {
 }
 
 const cromoTotal = (parametro, valor, unidade) => {
-    if ((parametro == "Cromo total") && (valor <= 0.05) && (unidade == "mg/l")) {
+    if ((parametro.toLowerCase() == "Cromo total") && (valor <= 0.05) && (unidade == "mg/l")) {
         return true
     } else {
         return false
@@ -39,7 +39,7 @@ const cromoTotal = (parametro, valor, unidade) => {
 }
 
 const cadmioTotal = (parametro, valor, unidade) => {
-    if ((parametro == "Cádmio total") && (valor <= 0.001) && (unidade == "mg/l")) {
+    if ((parametro.toLowerCase() == "Cádmio total") && (valor <= 0.001) && (unidade == "mg/l")) {
         return true
     } else {
         return false
@@ -47,7 +47,7 @@ const cadmioTotal = (parametro, valor, unidade) => {
 }
 
 const dBO = (parametro, valor, unidade) => {
-    if ((parametro == "DBO") && (valor <= 5) && (unidade == "mg O2/l")) {
+    if ((parametro.toLowerCase() == "DBO") && (valor <= 5) && (unidade == "mg O2/l")) {
         return true
     } else {
         return false
@@ -75,5 +75,40 @@ export const validaParams = (pontos) => {
     }
     else if (pontos.NomeParametro == "DBO") {
         return pontos.ValorAmostrado <= 5 && pontos.UnidadeMedida == "mg O2/l"
+    }
+}
+
+export const validaData = (data) => {
+    if (data) {
+        if (data.DataColeta == /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[1-9]|2[1-9])$/) {
+            return data
+        }
+    } else {
+        throw new Error('Formato de data incorreto (DD/MM/AAAA)')
+    }
+}
+
+export const validaCoord = (CoordX, CoordY) => {
+    if (CoordX, CoordY) {
+        if (CoordX.length === 9 && CoordY.length === 10) {
+            return CoordX, CoordY
+        }
+    } else {
+        throw new Error('Formato de coordenadas incorreto')
+    }
+}
+
+export const criaPonto = (NomePonto, NomeParametro, CoordX, CoordY, ValorAmostrado, UnidadeMedida, DataColeta) => {
+    validaData(DataColeta)
+    validaCoord(CoordX, CoordY)
+
+    return {
+        "NomePonto": NomePonto,
+        "NomeParametro": NomeParametro,
+        "CoordX": CoordX,
+        "CoordY": CoordY,
+        "ValorAmostrado": ValorAmostrado,
+        "UnidadeMedida": UnidadeMedida,
+        "DataColeta": DataColeta
     }
 }

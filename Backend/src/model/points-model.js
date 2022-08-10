@@ -1,9 +1,5 @@
 import pontosDAO from "../DAO/points-dao.js"
-import { validaParams } from "../services/filtroValida.js"
-// import {
-//     criaUsuario,
-//     validaUsuario,
-// } from "../services/usuario.js"
+import { criaPonto, validaParams } from "../services/filtroValida.js"
 
 const pontoModel = {
 
@@ -58,8 +54,9 @@ const pontoModel = {
 
     },
 
-    inserePonto: async (novoPonto) => {
+    inserePonto: async (ponto) => {
         try {
+            const novoPonto = criaPonto(ponto)
             const mensagem = await pontosDAO.inserePonto(novoPonto)
             return {
                 "mensagem": mensagem,

@@ -1,5 +1,6 @@
 import pontoModel from "../model/points-model.js"
-import { validaParams } from "../services/filtroValida.js"
+import { criaPonto } from "../services/filtroValida.js"
+
 
 const pontoController = (app) => {
 
@@ -68,28 +69,19 @@ const pontoController = (app) => {
     app.post('/ponto', async (req, res) => {
         const body = req.body
         try {
-            const { status } = await pontoModel.pegaUmPonto(body.NomePonto)
-            if (status === 404) {
-                const resposta = await pontoModel.inserePonto(body)
-
-                res.status(resposta.status).json({
-                    "mensagem": resposta.mensagem,
-                    "erro": false
-                })
-            } else {
-                res.status(400).json({
-                    "mensagem": `Ponto ${body.NomePonto} já existe`,
-                    "erro": true
-                })
-            }
-
-        } catch (error) {
-            res.status(400).json({
-                "mensagem": error.message,
+            const pontoNovo = criaPonto(body.NomePonto, body.NomeParametro, body.CoordX, body.CoordY, body.ValorAmostrado, body.UnidadeMedida, body.DataColeta);
+            await pontoModel.inserePonto(pontoNovo)
+            res.json({
+                "msg": "Ponto cadastrado com sucesso",
+                "Ponto": pontoNovo,
+                "erro": false
+            })
+        } catch (erro) {
+            res.json({
+                "msg": erro.message,
                 "erro": true
             })
         }
-
     })
 
     app.delete('/ponto/NomePonto/:NomePonto', async (req, res) => {

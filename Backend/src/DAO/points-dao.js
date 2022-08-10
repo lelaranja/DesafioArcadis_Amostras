@@ -57,7 +57,6 @@ const pontosDAO = {
 
     atualizaPonto: (NomePonto, novoPonto) => {
         const ATUALIZA_PONTO = `UPDATE PONTOS SET NomePonto = ?, NomeParametro = ?, CoordX = ?, CoordY = ?, ValorAmostrado = ?, UnidadeMedida = ?, DataColeta = ?  WHERE NomePonto = ?`
-
         return new Promise((resolve, reject) => {
             db.run(ATUALIZA_PONTO, novoPonto.NomePonto, novoPonto.NomeParametro, novoPonto.CoordX, novoPonto.CoordY, novoPonto.ValorAmostrado, ponto.UnidadeMedida, novoPonto.DataColeta,
                 (error) => {
@@ -69,7 +68,6 @@ const pontosDAO = {
                 })
         })
     }
-
 }
 
 export default pontosDAO
