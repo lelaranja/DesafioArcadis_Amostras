@@ -1,4 +1,5 @@
 import pontoModel from "../model/points-model.js"
+import { validaParams } from "../services/filtroValida.js"
 
 const pontoController = (app) => {
 

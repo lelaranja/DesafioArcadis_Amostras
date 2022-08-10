@@ -54,31 +54,6 @@ const dBO = (parametro, valor, unidade) => {
     }
 }
 
-// export const validaParams = (pontos) => {
-//     if (!aluminioDissolvido(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     if (!arsenioChumbo(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     if (!cobreDissolvido(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     if (!escherichiaColi(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     if (!cromoTotal(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     if (!cadmioTotal(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     if (!dBO(pontos.NomeParametro, pontos.ValorAmostrado, pontos.UnidadeMedida)) {
-//         return true
-//     }
-//     return false
-// }
-
 export const validaParams = (pontos) => {
     if (pontos.NomeParametro == 'Aluminio dissolvido') {
         return pontos.ValorAmostrado <= 0.1 && pontos.UnidadeMedida == "mg/l"

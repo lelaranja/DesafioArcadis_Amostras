@@ -31,7 +31,7 @@ const pontosDAO = {
     inserePonto: (ponto) => {
         return new Promise((resolve, reject) => {
             db.run(`INSERT INTO PONTOS (NomePonto, NomeParametro, CoordX, CoordY, ValorAmostrado, UnidadeMedida, DataColeta)
-            VALUES (?, ?, ?, ?, ?, ?)`, ponto.NomePonto, ponto.NomeParametro, ponto.CoordX, ponto.CoordY, ponto.ValorAmostrado, ponto.UnidadeMedida, ponto.DataColeta,
+            VALUES (?, ?, ?, ?, ?, ?, ?)`, ponto.NomePonto, ponto.NomeParametro, ponto.CoordX, ponto.CoordY, ponto.ValorAmostrado, ponto.UnidadeMedida, ponto.DataColeta,
                 (erro) => {
                     if (erro) {
                         reject(erro)

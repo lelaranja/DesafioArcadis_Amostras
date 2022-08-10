@@ -24,7 +24,6 @@ const pontoModel = {
         try {
             const dados = await pontosDAO.pegaTodosPontos()
             const dadosFiltro = await dados.filter((ponto) => { if (validaParams(ponto) == false) { return ponto } })
-            console.log(dados, dadosFiltro);
             return {
                 "dados": dadosFiltro,
                 "status": 200
@@ -61,7 +60,6 @@ const pontoModel = {
 
     inserePonto: async (novoPonto) => {
         try {
-            // const novoPonto = criaPonto(ponto)
             const mensagem = await pontosDAO.inserePonto(novoPonto)
             return {
                 "mensagem": mensagem,
