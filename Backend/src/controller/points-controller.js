@@ -1,4 +1,3 @@
-import pontosDAO from "../DAO/points-dao.js"
 import pontoModel from "../model/points-model.js"
 
 
