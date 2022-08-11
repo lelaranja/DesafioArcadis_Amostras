@@ -1,5 +1,5 @@
+import pontosDAO from "../DAO/points-dao.js"
 import pontoModel from "../model/points-model.js"
-import { criaPonto } from "../services/filtroValida.js"
 
 
 const pontoController = (app) => {
@@ -69,17 +69,16 @@ const pontoController = (app) => {
     app.post('/ponto', async (req, res) => {
         const body = req.body
         try {
-            const pontoNovo = criaPonto(body.NomePonto, body.NomeParametro, body.CoordX, body.CoordY, body.ValorAmostrado, body.UnidadeMedida, body.DataColeta);
-            await pontoModel.inserePonto(pontoNovo)
+            const novoPonto = await pontoModel.inserePonto(body)
             res.json({
-                "msg": "Ponto cadastrado com sucesso",
-                "Ponto": pontoNovo,
+                "msg": "Ponto inserido com sucesso",
+                "Ponto": novoPonto,
                 "erro": false
             })
         } catch (erro) {
             res.json({
-                "msg": erro.message,
-                "erro": true
+                "msg": erro.msg,
+                "erro": erro.erro
             })
         }
     })
@@ -103,7 +102,7 @@ const pontoController = (app) => {
             }
 
         } catch (error) {
-            res.status(500).json({
+            res.status(400).json({
                 "mensagem": error.message,
                 "erro": true
             })
@@ -122,10 +121,10 @@ const pontoController = (app) => {
                 })
             } else {
                 const resposta = await pontoModel.atualizaPonto(NomePonto, body)
-
                 res.status(resposta.status).json({
                     "mensagem": resposta.mensagem,
-                    "erro": false
+                    "erro": false,
+                    "aqui": "aqui"
                 })
             }
 

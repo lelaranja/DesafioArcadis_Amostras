@@ -1,7 +1,26 @@
 import pontosDAO from "../DAO/points-dao.js"
-import { criaPonto, validaParams } from "../services/filtroValida.js"
+import { validaParams, validaCoord, validaData } from "../services/filtroValida.js"
 
 const pontoModel = {
+
+    criaPonto: async (body) => {
+        try {
+            await validaData(body.DataColeta)
+            await validaCoord(body.CoordX, body.CoordY)
+            return {
+                "NomePonto": body.NomePonto,
+                "NomeParametro": body.NomeParametro,
+                "CoordX": body.CoordX,
+                "CoordY": body.CoordY,
+                "ValorAmostrado": body.ValorAmostrado,
+                "UnidadeMedida": body.UnidadeMedida,
+                "DataColeta": body.DataColeta
+            }
+        } catch (erro) {
+            throw erro
+        }
+    },
+
 
     pegaPontos: async () => {
         try {
@@ -51,22 +70,15 @@ const pontoModel = {
                 "status": 400
             }
         }
-
     },
 
     inserePonto: async (ponto) => {
         try {
-            const novoPonto = criaPonto(ponto)
+            const novoPonto = await pontoModel.criaPonto(ponto)
             const mensagem = await pontosDAO.inserePonto(novoPonto)
-            return {
-                "mensagem": mensagem,
-                "status": 201
-            }
+            return mensagem
         } catch (error) {
-            return {
-                "mensagem": error.message,
-                "status": 400
-            }
+            throw error
         }
     },
 
@@ -93,7 +105,6 @@ const pontoModel = {
                 "mensagem": mensagem,
                 "status": 200
             }
-
         } catch (error) {
             return {
                 "mensagem": error.message,

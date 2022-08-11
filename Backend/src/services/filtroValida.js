@@ -79,36 +79,49 @@ export const validaParams = (pontos) => {
 }
 
 export const validaData = (data) => {
-    if (data) {
-        if (data.DataColeta == /^(0[1-9]|1[0-2])\/(0[1-9]|1\d|2\d|3[01])\/(0[1-9]|1[1-9]|2[1-9])$/) {
-            return data
+    return new Promise((resolve, reject) => {
+        if (data) {
+            const valData = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
+            if (valData.test(data)) {
+                resolve(data)
+            } else {
+                reject({
+                    msg: 'Formato de data incorreto (DD/MM/AAAA)',
+                    status: 400,
+                    erro: true
+                })
+            }
+        } else {
+            reject({
+                msg: 'Campo data vazio. Preencha no modelo:(DD/MM/AAAA)',
+                status: 400,
+                erro: true
+            })
         }
-    } else {
-        throw new Error('Formato de data incorreto (DD/MM/AAAA)')
-    }
+    })
 }
 
 export const validaCoord = (CoordX, CoordY) => {
-    if (CoordX, CoordY) {
-        if (CoordX.length === 9 && CoordY.length === 10) {
-            return CoordX, CoordY
+    return new Promise((resolve, reject) => {
+        if (CoordX, CoordY) {
+            const valorX = CoordX.toString()
+            const valorY = CoordY.toString()
+            if (valorX.length === 9 && valorX.indexOf(".") == valorX.length - 3
+                && valorY.length === 10 && valorY.indexOf(".") == valorY.length - 3) {
+                resolve()
+            } else {
+                reject({
+                    msg: 'Formato de coordenadas incorreto',
+                    status: 400,
+                    erro: true
+                })
+            }
+        } else {
+            reject({
+                msg: 'Campos de coordenadas vazios',
+                status: 400,
+                erro: true
+            })
         }
-    } else {
-        throw new Error('Formato de coordenadas incorreto')
-    }
-}
-
-export const criaPonto = (NomePonto, NomeParametro, CoordX, CoordY, ValorAmostrado, UnidadeMedida, DataColeta) => {
-    validaData(DataColeta)
-    validaCoord(CoordX, CoordY)
-
-    return {
-        "NomePonto": NomePonto,
-        "NomeParametro": NomeParametro,
-        "CoordX": CoordX,
-        "CoordY": CoordY,
-        "ValorAmostrado": ValorAmostrado,
-        "UnidadeMedida": UnidadeMedida,
-        "DataColeta": DataColeta
-    }
+    })
 }

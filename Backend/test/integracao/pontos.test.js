@@ -21,6 +21,6 @@ describe("Testando rotas pontos", () => {
 
         const resposta = await request(app).post('/ponto')
             .send(mock)
-        expect(resposta.status).toBe(201)
+        expect(resposta.status).toBe(200)
     })
 })
