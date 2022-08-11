@@ -1,9 +1,7 @@
 import Modal from 'react-modal';
 import { useState } from 'react';
 import React from "react";
-import ButtonAbove from "../buttonAbove";
-import ButtonAdd from "../buttonAdd";
-import MainButton from "../buttonAll";
+import Button from "../button";
 import "./pointList.css"
 import FormAdd from '../form';
 
@@ -26,9 +24,9 @@ const List = () => {
         <div>
             <header>
                 <h2>Pontos cadastrados</h2>
-                <MainButton>Listar todos os pontos</MainButton>
-                <ButtonAbove>Pontos que violam a legislação</ButtonAbove>
-                <ButtonAdd onClick={handleOpenModal} >Adicionar pontos</ButtonAdd>
+                <Button id="getAll">Listar todos os pontos</Button>
+                <Button id="getIrregular">Pontos que violam a legislação</Button>
+                <Button onClick={handleOpenModal} >Adicionar pontos</Button>
                 <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
                     <FormAdd />
                 </Modal>

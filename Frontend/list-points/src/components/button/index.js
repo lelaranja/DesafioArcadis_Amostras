@@ -1,10 +1,10 @@
 import React from "react";
-import "./buttonAll.css"
+import "./buttonAdd.css"
 
-const MainButton = (props) => {
+const Button = (props) => {
     return (
         <button className='botao'>{props.children}</button>
     )
 }
 
-export default MainButton
+export default Button
