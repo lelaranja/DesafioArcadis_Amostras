@@ -38,13 +38,12 @@ const FormAdd = ({ setOpen, setReload }) => {
                 <InputText tipo="date"
                     obrigatorio={true}
                     label="Data da Coleta"
-                    placeholder="Digite a data (DD/MM/AAAA)"
                     valor={data}
                     toChanged={valor => setData(valor)}
                 />
                 <InputText obrigatorio={true}
                     label="Identificação do ponto"
-                    placeholder="Digite a identificação do poço"
+                    placeholder="Identificação do ponto"
                     valor={ponto}
                     toChanged={valor => setPonto(valor)}
                 />
@@ -56,25 +55,25 @@ const FormAdd = ({ setOpen, setReload }) => {
                 />
                 <InputText obrigatorio={true}
                     label="Valor Amostrado"
-                    placeholder="Informe o valor amostrado"
+                    placeholder="Valor amostrado"
                     valor={amostra}
                     toChanged={valor => setAmostra(valor)}
                 />
                 <InputText obrigatorio={true}
                     label="Unidade"
-                    placeholder="Unidade do valor amostrado (ex: mg/l)"
+                    placeholder="Unidade (ex: mg/l)"
                     valor={unidade}
                     toChanged={valor => setUnidade(valor)}
                 />
                 <InputText obrigatorio={true}
                     label="Coordenada X"
-                    placeholder="Entre com a coordenada X"
+                    placeholder="Coordenada X"
                     valor={coordx}
                     toChanged={valor => setCoordx(valor)}
                 />
                 <InputText obrigatorio={true}
                     label="Coordenada Y"
-                    placeholder="Entre com a coordenada Y"
+                    placeholder="Coordenada Y"
                     valor={coordy}
                     toChanged={valor => setCoordy(valor)}
                 />
