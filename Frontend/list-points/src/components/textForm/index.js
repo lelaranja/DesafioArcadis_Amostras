@@ -10,7 +10,7 @@ const InputText = (props) => {
     return (
         <div className="input-text">
             <label> {props.label}</label>
-            <input values={props.valor} onChange={typed} required={props.need} placeholder={props.placeholder} />
+            <input values={props.valor} onChange={typed} required={props.need} placeholder={props.placeholder} type={props.tipo} />
         </div>
     )
 }

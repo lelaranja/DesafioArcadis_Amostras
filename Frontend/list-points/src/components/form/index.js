@@ -18,10 +18,10 @@ const FormAdd = ({ setOpen, setReload }) => {
     const toSave = async (e) => {
         e.preventDefault()
         await postPonto({
-            DataColeta: data,
+            DataColeta: data.toString(),
             NomePonto: ponto,
             NomeParametro: parametro,
-            ValorAmostra: +(amostra),
+            ValorAmostra: parseFloat(amostra),
             UnidadeMedida: unidade,
             CoordX: coordx,
             CoordY: coordy
@@ -36,15 +36,15 @@ const FormAdd = ({ setOpen, setReload }) => {
     return (
         <section className="forms-cadastro">
             <form >
-                <h4>Cadastre um novo ponto/parâmetro</h4>
-                <InputText type="date"
+                <h4>Cadastre um novo ponto</h4>
+                <InputText tipo="date"
                     need={true}
                     label="Data da Coleta"
                     placeholder="Digite a data (DD/MM/AAAA)"
                     valor={data}
                     toChanged={valor => setData(valor)}
                 />
-                <InputText need={true}
+                <InputText need="true" required
                     label="Identificação do ponto"
                     placeholder="Digite a identificação do poço"
                     valor={ponto}
@@ -56,7 +56,7 @@ const FormAdd = ({ setOpen, setReload }) => {
                     valor={parametro}
                     toChanged={valor => setParametro(valor)}
                 />
-                <InputText need={true}
+                <InputText tipo="number" need={true}
                     label="Valor Amostrado"
                     placeholder="Informe o valor amostrado"
                     valor={amostra}
