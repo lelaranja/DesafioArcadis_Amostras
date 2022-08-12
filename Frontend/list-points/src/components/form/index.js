@@ -20,7 +20,7 @@ const FormAdd = ({ setOpen, setReload }) => {
             DataColeta: data,
             NomePonto: ponto,
             NomeParametro: parametro,
-            ValorAmostra: amostra,
+            ValorAmostrado: amostra,
             UnidadeMedida: unidade,
             CoordX: coordx,
             CoordY: coordy
@@ -54,11 +54,12 @@ const FormAdd = ({ setOpen, setReload }) => {
                     valor={parametro}
                     toChanged={valor => setParametro(valor)}
                 />
-                <InputText obrigatorio={true}
+                <InputText tipo="number"
+                    obrigatorio={true}
                     label="Valor Amostrado"
                     placeholder="Valor amostrado"
                     valor={amostra}
-                    toChanged={valor => setAmostra(valor)}
+                    toChanged={valor => setAmostra(parseFloat(valor))}
                 />
                 <InputText obrigatorio={true}
                     label="Unidade"
