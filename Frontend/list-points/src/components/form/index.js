@@ -6,7 +6,6 @@ import { postPonto } from "../../service/api";
 
 
 const FormAdd = ({ setOpen, setReload }) => {
-
     const [data, setData] = useState('');
     const [ponto, setPonto] = useState('');
     const [parametro, setParametro] = useState('');
@@ -18,10 +17,10 @@ const FormAdd = ({ setOpen, setReload }) => {
     const toSave = async (e) => {
         e.preventDefault()
         await postPonto({
-            DataColeta: data.toString(),
+            DataColeta: data,
             NomePonto: ponto,
             NomeParametro: parametro,
-            ValorAmostra: parseFloat(amostra),
+            ValorAmostra: amostra,
             UnidadeMedida: unidade,
             CoordX: coordx,
             CoordY: coordy
@@ -30,51 +29,50 @@ const FormAdd = ({ setOpen, setReload }) => {
         setOpen(false)
         setReload(true)
         console.log('Ponto adicionado', data, ponto, parametro, amostra, unidade, coordx, coordy)
-        console.log(typeof amostra);
+        console.log(typeof amostra, { data });
     }
 
     return (
         <section className="forms-cadastro">
             <form >
-                <h4>Cadastre um novo ponto</h4>
                 <InputText tipo="date"
-                    need={true}
+                    obrigatorio={true}
                     label="Data da Coleta"
                     placeholder="Digite a data (DD/MM/AAAA)"
                     valor={data}
                     toChanged={valor => setData(valor)}
                 />
-                <InputText need="true" required
+                <InputText obrigatorio={true}
                     label="Identificação do ponto"
                     placeholder="Digite a identificação do poço"
                     valor={ponto}
                     toChanged={valor => setPonto(valor)}
                 />
-                <InputText need={true}
+                <InputText obrigatorio={true}
                     label="Parâmetro Amostrado"
                     placeholder="Informe o parâmetro"
                     valor={parametro}
                     toChanged={valor => setParametro(valor)}
                 />
-                <InputText tipo="number" need={true}
+                <InputText obrigatorio={true}
                     label="Valor Amostrado"
                     placeholder="Informe o valor amostrado"
                     valor={amostra}
                     toChanged={valor => setAmostra(valor)}
                 />
-                <InputText need={true}
+                <InputText obrigatorio={true}
                     label="Unidade"
                     placeholder="Unidade do valor amostrado (ex: mg/l)"
                     valor={unidade}
                     toChanged={valor => setUnidade(valor)}
                 />
-                <InputText need={true}
+                <InputText obrigatorio={true}
                     label="Coordenada X"
                     placeholder="Entre com a coordenada X"
                     valor={coordx}
                     toChanged={valor => setCoordx(valor)}
                 />
-                <InputText need={true}
+                <InputText obrigatorio={true}
                     label="Coordenada Y"
                     placeholder="Entre com a coordenada Y"
                     valor={coordy}

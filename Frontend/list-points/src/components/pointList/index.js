@@ -1,4 +1,3 @@
-import Modal from 'react-modal';
 import { useEffect, useState } from 'react';
 import React from "react";
 import Button from "../button";
@@ -8,20 +7,15 @@ import BasicModal from '../modal';
 import ItemList from '../itemList';
 import { getPontos } from '../../service/api';
 
-Modal.setAppElement('#root')
 
 const List = () => {
 
-    const [open, setOpen] = React.useState(false);
-    const [dados, setDados] = React.useState();
-    const [reload, setReload] = React.useState(false);
+    const [open, setOpen] = useState(false);
+    const [dados, setDados] = useState();
+    const [reload, setReload] = useState(false);
 
     const handleOpenModal = () => {
         setOpen(true)
-    }
-
-    const handleCloseModal = () => {
-        setOpen(false)
     }
 
     const request = async (close) => {

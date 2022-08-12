@@ -10,12 +10,6 @@ export const getPontos = async (endPoint) => {
     return json;
 };
 
-export const getPontosIrregulares = async () => {
-    const response = await instance.get("/ponto/irregular");
-    const json = await response.data.pontos;
-    return json;
-};
-
 export const postPonto = async (body) => {
     const response = await instance.post("/ponto", body);
     const json = await response.data.msg;
