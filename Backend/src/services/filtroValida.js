@@ -78,29 +78,6 @@ export const validaParams = (pontos) => {
     }
 }
 
-export const validaData = (data) => {
-    return new Promise((resolve, reject) => {
-        if (data) {
-            const valData = /^([0-9]{2})\/([0-9]{2})\/([0-9]{4})$/
-            if (valData.test(data)) {
-                resolve(data)
-            } else {
-                reject({
-                    msg: 'Formato de data incorreto (DD/MM/AAAA)',
-                    status: 400,
-                    erro: true
-                })
-            }
-        } else {
-            reject({
-                msg: 'Campo data vazio. Preencha no modelo:(DD/MM/AAAA)',
-                status: 400,
-                erro: true
-            })
-        }
-    })
-}
-
 export const validaCoord = (CoordX, CoordY) => {
     return new Promise((resolve, reject) => {
         if (CoordX, CoordY) {

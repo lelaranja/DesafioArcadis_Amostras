@@ -9,7 +9,7 @@ CREATE TABLE IF NOT EXISTS "PONTOS" (
     "NomeParametro" varchar(64),
     "CoordX" int,
     "CoordY" int,
-    "ValorAmostrado" float,
+    "ValorAmostrado" int,
     "UnidadeMedida" varchar(10),
     "DataColeta" varchar (64)
 );`;

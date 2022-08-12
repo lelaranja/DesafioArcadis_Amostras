@@ -5,7 +5,6 @@ const pontoModel = {
 
     criaPonto: async (body) => {
         try {
-            await validaData(body.DataColeta)
             await validaCoord(body.CoordX, body.CoordY)
             return {
                 "NomePonto": body.NomePonto,
