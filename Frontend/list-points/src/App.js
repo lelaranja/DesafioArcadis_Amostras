@@ -1,4 +1,5 @@
 import List from "./components/pointList";
+import "./App.css"
 
 
 function App() {

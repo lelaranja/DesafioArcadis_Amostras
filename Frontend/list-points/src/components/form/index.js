@@ -29,12 +29,12 @@ const FormAdd = ({ setOpen, setReload }) => {
         setOpen(false)
         setReload(true)
         console.log('Ponto adicionado', data, ponto, parametro, amostra, unidade, coordx, coordy)
-        console.log(typeof amostra, { data });
+        console.log(typeof amostra, { data }, typeof coordx);
     }
 
     return (
         <section className="forms-cadastro">
-            <form >
+            <form onSubmit={toSave}>
                 <InputText tipo="date"
                     obrigatorio={true}
                     label="Data da Coleta"
@@ -42,6 +42,7 @@ const FormAdd = ({ setOpen, setReload }) => {
                     toChanged={valor => setData(valor)}
                 />
                 <InputText obrigatorio={true}
+                    required={true}
                     label="Identificação do ponto"
                     placeholder="Identificação do ponto"
                     valor={ponto}
@@ -78,10 +79,10 @@ const FormAdd = ({ setOpen, setReload }) => {
                     toChanged={valor => setCoordy(valor)}
                 />
                 <div className="btInput">
-                    <ButtonForm className='btInput' onClick={toSave} />
+                    <ButtonForm className='btInput' />
                 </div>
             </form>
-        </section>
+        </section >
     )
 }
 
