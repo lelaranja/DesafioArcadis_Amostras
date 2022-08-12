@@ -242,13 +242,10 @@ Projeto foi desenvolvido para consumo da API desenvolvida no backend, utilizando
 
 <!--ts-->
 
-- [Pré-requisitos](#-pré-requisitos)
-- [Packages](#-packages)
-- [Instalação](#-instalação-da-aplicação)
-- [Inicializando banco de dados](#%EF%B8%8F-inicializando-o-banco-de-dados)
-- [Testes](#bug-testes)
-- [Rotas](#%EF%B8%8F-rotas)
-- [Hospedagem no Heroku](#-link-do-heroku)
+- [Pré-requisitos](#-pré-requisitos-1)
+- [Packages](#-packages-1)
+- [Instalação](#-instalação-da-aplicação-1)
+- [Hospedagem no Heroku](#-link-do-heroku-1)
 <!--te-->
 
 ## 📚 Pré-requisitos
