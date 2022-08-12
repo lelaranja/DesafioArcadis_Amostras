@@ -123,7 +123,6 @@ const pontoController = (app) => {
                 res.status(resposta.status).json({
                     "mensagem": resposta.mensagem,
                     "erro": false,
-                    "aqui": "aqui"
                 })
             }
 

@@ -1,5 +1,5 @@
 import pontosDAO from "../DAO/points-dao.js"
-import { validaParams, validaCoord, validaData } from "../services/filtroValida.js"
+import { validaParams, validaCoord } from "../services/filtroValida.js"
 
 const pontoModel = {
 
