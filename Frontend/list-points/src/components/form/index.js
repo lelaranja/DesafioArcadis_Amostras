@@ -28,8 +28,6 @@ const FormAdd = ({ setOpen, setReload }) => {
         alert("Ponto adicionado com sucesso!")
         setOpen(false)
         setReload(true)
-        console.log('Ponto adicionado', data, ponto, parametro, amostra, unidade, coordx, coordy)
-        console.log(typeof amostra, { data }, typeof coordx);
     }
 
     return (
