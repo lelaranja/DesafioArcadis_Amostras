@@ -3,19 +3,15 @@ import Button from '../button';
 import "./modal.css"
 
 
-export default function BasicModal() {
-    const [open, setOpen] = React.useState(false);
+export default function BasicModal({ open, setOpen, children }) {
+
     const handleOpen = () => setOpen(true);
     const handleClose = () => setOpen(false);
 
     return (
-        <div>
-            <Button onClick={handleOpen}>Open modal</Button>
-            <Modal
-                open={open}
-                onClose={handleClose}
-            >
-            </Modal>
+        <div className='fade'>
+            <Button onClick={handleClose}>Fechar Modal</Button>
+            {children}
         </div>
     );
 }

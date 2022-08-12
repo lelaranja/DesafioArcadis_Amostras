@@ -1,9 +1,9 @@
 import React from "react";
 import "./buttonForm.css"
 
-const ButtonForm = () => {
+const ButtonForm = (props) => {
     return (
-        <button className='botao'>Adicionar ponto</button>
+        <button className='botao' onClick={props.onClick}>Adicionar ponto</button>
     )
 }
 

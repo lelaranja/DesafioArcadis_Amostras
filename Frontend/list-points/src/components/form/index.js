@@ -2,9 +2,10 @@ import React, { useState } from "react";
 import InputText from "../textForm";
 import ButtonForm from "../buttonForm";
 import "./form.css";
+import { postPonto } from "../../service/api";
 
 
-const FormAdd = () => {
+const FormAdd = ({ setOpen, setReload }) => {
 
     const [data, setData] = useState('');
     const [ponto, setPonto] = useState('');
@@ -14,14 +15,27 @@ const FormAdd = () => {
     const [coordx, setCoordx] = useState('');
     const [coordy, setCoordy] = useState('');
 
-    const toSave = (e) => {
+    const toSave = async (e) => {
         e.preventDefault()
+        await postPonto({
+            DataColeta: data,
+            NomePonto: ponto,
+            NomeParametro: parametro,
+            ValorAmostra: +(amostra),
+            UnidadeMedida: unidade,
+            CoordX: coordx,
+            CoordY: coordy
+        })
+        alert("Ponto adicionado com sucesso!")
+        setOpen(false)
+        setReload(true)
         console.log('Ponto adicionado', data, ponto, parametro, amostra, unidade, coordx, coordy)
+        console.log(typeof amostra);
     }
 
     return (
         <section className="forms-cadastro">
-            <form onSubmit={toSave}>
+            <form >
                 <h4>Cadastre um novo ponto/parâmetro</h4>
                 <InputText type="date"
                     need={true}
@@ -67,7 +81,7 @@ const FormAdd = () => {
                     toChanged={valor => setCoordy(valor)}
                 />
                 <div className="btInput">
-                    <ButtonForm className='btInput' />
+                    <ButtonForm className='btInput' onClick={toSave} />
                 </div>
             </form>
         </section>

@@ -1,82 +1,69 @@
 import Modal from 'react-modal';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import React from "react";
 import Button from "../button";
 import "./pointList.css"
 import FormAdd from '../form';
+import BasicModal from '../modal';
+import ItemList from '../itemList';
+import { getPontos } from '../../service/api';
 
 Modal.setAppElement('#root')
 
 const List = () => {
 
-    const [modalIsOpen, setIsOpen] = useState(false)
+    const [open, setOpen] = React.useState(false);
+    const [dados, setDados] = React.useState();
+    const [reload, setReload] = React.useState(false);
 
     const handleOpenModal = () => {
-        return setIsOpen(true)
+        setOpen(true)
     }
 
     const handleCloseModal = () => {
-        return setIsOpen(false)
+        setOpen(false)
     }
 
+    const request = async (close) => {
+        const response = await getPontos(close)
+        setDados(response)
+    }
+
+    useEffect(() => { request("ponto") }, [])
+
+    useEffect(() => {
+        if (reload) {
+            request("ponto")
+            setReload(false)
+        }
+    }, [reload])
 
     return (
         <div>
             <header>
                 <h2>Pontos cadastrados</h2>
-                <Button id="getAll">Listar todos os pontos</Button>
-                <Button id="getIrregular">Pontos que violam a legislação</Button>
-                <Button onClick={handleOpenModal} >Adicionar pontos</Button>
-                <Modal isOpen={modalIsOpen} onRequestClose={handleCloseModal}>
-                    <FormAdd />
-                </Modal>
+                <Button onClick={() => request("ponto")}>Listar todos os pontos</Button>
+                <Button onClick={() => request("ponto/irregular")}>Pontos que violam a legislação</Button>
+                <Button onClick={handleOpenModal}>Adicionar pontos</Button>
             </header>
             <section className="lista">
-                <div className='textList'>
-                    <div>
-                        <label>
-                            Data da Coleta
-                        </label>
-                        <h4>08/02/2022</h4>
-                    </div>
-                    <div>
-                        <label>
-                            Identificação do Ponto
-                        </label>
-                        <h4>PA-05</h4>
-                    </div>
-                    <div>
-                        <label>
-                            Parâmetro
-                        </label>
-                        <h4>Cromo Total</h4>
-                    </div>
-                    <div>
-                        <label>
-                            Valor Amostrado
-                        </label>
-                        <h4>0.1</h4>
-                    </div>
-                    <div>
-                        <label>
-                            Unidade
-                        </label>
-                        <h4>mg/l</h4>
-                    </div>
-                    <div>
-                        <label>
-                            Coordenada X
-                        </label>
-                        <h4>658797.01</h4>
-                    </div>
-                    <div>
-                        <label>
-                            Coordenada Y
-                        </label>
-                        <h4>589742.03</h4>
-                    </div>
-                </div>
+                {!!dados && dados.map((item) => {
+                    return (
+                        <ItemList key={item.ID}
+                            NomePonto={item.NomePonto}
+                            NomeParametro={item.NomeParametro}
+                            CoordX={item.CoordX}
+                            CoordY={item.CoordY}
+                            ValorAmostrado={item.ValorAmostrado}
+                            UnidadeMedida={item.UnidadeMedida}
+                            DataColeta={item.DataColeta}
+                        />
+                    )
+                })}
             </section>
+            {open && <BasicModal open={open} setOpen={setOpen}>
+                <FormAdd setOpen={setOpen} setReload={setReload} />
+            </BasicModal>}
         </div>
     )
 }
