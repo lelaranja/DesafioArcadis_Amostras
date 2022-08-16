@@ -7,7 +7,7 @@ const arsenioChumbo = (parametro, valor, unidade) => {
 }
 
 const aluminioDissolvido = (parametro, valor, unidade) => {
-    if ((parametro.toLowerCase() == "aluminio dissolvido") && (valor <= 0.1) && (unidade == "mg/l")) {
+    if ((parametro.toLowerCase() == "alumínio dissolvido") && (valor <= 0.1) && (unidade == "mg/l")) {
         return true
     } else {
         return false
@@ -55,7 +55,7 @@ const dBO = (parametro, valor, unidade) => {
 }
 
 export const validaParams = (pontos) => {
-    if (pontos.NomeParametro == 'Aluminio dissolvido') {
+    if (pontos.NomeParametro == 'Alumínio dissolvido') {
         return pontos.ValorAmostrado <= 0.1 && pontos.UnidadeMedida == "mg/l"
     }
     else if (pontos.NomeParametro == "Arsênio total" || pontos.NomeParametro == "Chumbo total") {
