@@ -13,6 +13,8 @@ const List = () => {
     const [open, setOpen] = useState(false);
     const [dados, setDados] = useState();
     const [reload, setReload] = useState(false);
+    const [busca, setBusca] = useState("");
+
 
     const handleOpenModal = () => {
         setOpen(true)
@@ -40,8 +42,19 @@ const List = () => {
                 <Button onClick={() => request("ponto/irregular")}>Pontos que violam a legislação</Button>
                 <Button onClick={handleOpenModal}>Adicionar pontos</Button>
             </header>
+            <section className="search-input" >
+                <label>Busca:</label>
+                <input type="search" value={busca} onChange={(e) => setBusca(e.target.value)} />
+            </section>
             <section className="lista">
-                {!!dados && dados.map((item) => {
+                {!!dados && dados.filter((val) => {
+                    if (busca === "") {
+                        return val
+                    } else if (val.NomePonto.toLowerCase().includes(busca.toLowerCase()) ||
+                        val.NomeParametro.toLowerCase().includes(busca.toLowerCase())) {
+                        return val
+                    }
+                }).map((item) => {
                     return (
                         <ItemList key={item.ID}
                             NomePonto={item.NomePonto}
